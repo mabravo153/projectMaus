@@ -11,7 +11,7 @@
 
                 const value = document.querySelector('#name').value
 
-                let response = await fetch(`http://localhost:9000/charge/${value}`)
+                let response = await fetch(`http://3.22.27.119/:9000/charge/${value}`)
 
                 if(response.ok){
                     let data = await response.json()
