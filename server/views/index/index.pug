@@ -1,0 +1,49 @@
+extends ../template/index
+block contenido
+    main.container.mt-5
+        h1.text-center.mb-5 #{message}
+        .row.justify-content-center
+            .col-md-8
+                form(action="/formulario", method="POST")
+                
+                    .form-group
+                        label(for="name") Nombre y Apellido
+                        select(name="name", class="custom-select", id="name")
+                            option(selected, disabled) Selecciona una opcion
+                            each usuario in usuarios
+                                option(value=usuario.id) #{usuario.nombre} #{usuario.apellido}
+                               
+                    .row
+                        .form-group.col-md-6
+                            label(for="cargo") Cargo
+                            input(type="text", name="cargo", placeholder="Cargo", id="cargo", 
+                            class="form-control", required )
+                        .form-group.col-md-6
+                            label(for="fecha") Fecha
+                            input(type="date", name="fecha", id="fecha", 
+                            class="form-control", required)
+
+                    .row
+                        .form-group.col-md-6
+                            label(for="equipo") Estado del Equipo
+                            select(name="estado", class="custom-select", required)
+                                option(selected, disabled) Selecciona una opcion
+                                option(value="0") Activo
+                                option(value="1") Inactivo
+
+                        .form-group.col-md-6
+                            label(for="horometro") Horometro Actual
+                            input(type="text", name="horometro", placeholder="001", id="horometro", 
+                            class="form-control",required)  
+
+                    .form-group
+                            label(for="equipo") Equipo
+                            select(name="equipo", class="custom-select", required)
+                                option(selected, disabled) Selecciona una opcion
+                                each equipo in equipos
+                                    option(value=equipo.id) #{equipo.titulo} #{equipo.tipo}
+
+                    .form-group
+                        label(for="msg") Descripcion
+                        textarea#msg(name="descripcion", rows="3", placeholder="Descripcion de la Falla", class="form-control", required)=mensaje
+                    input.btn.btn-success.btn-block(type="submit", value="Enviar") 
